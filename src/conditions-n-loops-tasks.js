@@ -137,8 +137,72 @@ function convertToRomanNumerals(num) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  let result = '';
+  let spaceNeeded = false;
+
+  for (let i = 0; i < numberStr.length; i += 1) {
+    const char = numberStr[i];
+    if (spaceNeeded) {
+      result += ' ';
+      spaceNeeded = false;
+    }
+    switch (char) {
+      case '-':
+        result += 'minus';
+        spaceNeeded = true;
+        break;
+      case '.':
+      case ',':
+        result += 'point';
+        spaceNeeded = true;
+        break;
+      case '0':
+        result += 'zero';
+        spaceNeeded = true;
+        break;
+      case '1':
+        result += 'one';
+        spaceNeeded = true;
+        break;
+      case '2':
+        result += 'two';
+        spaceNeeded = true;
+        break;
+      case '3':
+        result += 'three';
+        spaceNeeded = true;
+        break;
+      case '4':
+        result += 'four';
+        spaceNeeded = true;
+        break;
+      case '5':
+        result += 'five';
+        spaceNeeded = true;
+        break;
+      case '6':
+        result += 'six';
+        spaceNeeded = true;
+        break;
+      case '7':
+        result += 'seven';
+        spaceNeeded = true;
+        break;
+      case '8':
+        result += 'eight';
+        spaceNeeded = true;
+        break;
+      case '9':
+        result += 'nine';
+        spaceNeeded = true;
+        break;
+      default:
+        break;
+    }
+  }
+
+  return result;
 }
 
 /**
@@ -153,8 +217,19 @@ function convertNumberToString(/* numberStr */) {
  *  '0123210'   => true
  *  'qweqwe'    => false
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  let left = 0;
+  let right = str.length - 1;
+
+  while (left < right) {
+    if (str[left] !== str[right]) {
+      return false;
+    }
+    left += 1;
+    right -= 1;
+  }
+
+  return true;
 }
 
 /**
@@ -171,8 +246,13 @@ function isPalindrome(/* str */) {
  *  'qwerty', 'Q'     => -1
  *  'qwerty', 'p'     => -1
  */
-function getIndexOf(/* str, letter */) {
-  throw new Error('Not implemented');
+function getIndexOf(str, letter) {
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i] === letter) {
+      return i;
+    }
+  }
+  return -1;
 }
 
 /**
@@ -190,8 +270,22 @@ function getIndexOf(/* str, letter */) {
  *  12345, 0    => false
  *  12345, 6    => false
  */
-function isContainNumber(/* num, digit */) {
-  throw new Error('Not implemented');
+function isContainNumber(num, digit) {
+  let newNum = num;
+
+  if (newNum < 0) {
+    newNum = -newNum;
+  }
+
+  while (newNum > 0) {
+    const currentDigit = newNum % 10;
+    if (currentDigit === digit) {
+      return true;
+    }
+    newNum = Math.floor(newNum / 10);
+  }
+
+  return false;
 }
 
 /**
